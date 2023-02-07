@@ -1,0 +1,18 @@
+{
+  "name": "major-project---sagar-dutta",
+  "version": "1.0.0",
+  "description": "Weather Information Project is a web app which will tell us the weather related parameters like temperature, humidity, etc of the present day as well as of the next 7 days.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sagar Dutta",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "request": "^2.88.2"
+  }
+}

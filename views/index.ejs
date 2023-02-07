@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather Forecast App</title>
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body onload=" GetWeather(DefaultPlace)">
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  			<!-- <a class="navbar-brand" href="#">LOGO</a> -->
+              <i class="navbar-brand fas fa-umbrella"></i>
+  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  			</button>
+
+  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<h1>Weather Forecast App</h1>
+    		<table class="searchcitybar">
+                <tr>
+      			<th><input class="form-control mr-sm-2" type="text" id="userInput"></h5></th>
+                <td><input value="Search" class="btn btn-secondary" type="button" id="searchBtn" onclick="citySubmit()"></td>
+                </tr>
+    		</table>
+                    
+      		</div>
+		</nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-4" id="nowcastWeather">
+                    <div class="card" style="width: 100%; height: auto;">
+                        <div class="card-body">
+                            <h1 class="card card-title" id="cityName"></h1>
+                            
+                          <table>
+                            <% const date = new Date(); %>
+                            <tr>
+                                <th colspan="2" id="todayDate"><%= date %></th>
+                            </tr>
+                            
+                          	<tr>
+                          		<tr><th colspan="2" id="day0Icon"></th></tr>
+                          	</tr>
+                              <tr>
+                                <tr><th colspan="2" id="day0Weather"></th></tr>
+                            </tr>
+                          	<tr>
+                          		<th class="card-subtitle mb-2 text-muted">Max Temp&nbsp;<i class="fas fa-fire"></i>&nbsp;&nbsp;(°C)</th>
+                          		<td class="card-text" id="day0MaxTemp"></td>
+                          	</tr>
+                          	<tr>
+                          		<th class="card-subtitle mb-2 text-muted">Min Temp&nbsp;<i class="fas fa-cube"></i>&nbsp;&nbsp;(°C)</th>
+                          		<td class="card-text" id="day0MinTemp"></td>
+                          	</tr>
+                          	<tr>
+                          		<th class="card-subtitle mb-2 text-muted">Humidity&nbsp;<i class="fas fa-cloud"></i>&nbsp;&nbsp;(%)</th>
+                          		<td class="card-text" id="day0Humidity"></td>
+                          	</tr>
+                          	<tr>
+                          		<th class="card-subtitle mb-2 text-muted">Winds&nbsp;<i class="fas fa-wind"></i>&nbsp;&nbsp;(kmh<sup>-1</sup>)</th>
+                          		<td class="card-text" id="day0Wind"></td>
+                          	</tr>
+                            <tr>
+                                <th class="card-subtitle mb-2 text-muted">Pressure&nbsp;<i class="fas fa-thermometer"></i>&nbsp;&nbsp;(atm)</th>
+                                <td class="card-text" id="day0Pressure"></td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                      <h2 id="error"></h2>
+                      <p id="ErrorMsg"></p>
+                      	<h2 id="latitude"></h2>
+      					<h2 id="longitude"></h2>
+     	 				
+                </div>
+                <div class="col-8" id="forecastWeather">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Date & Time</th>
+                            <th scope="col">Max Temperature (°C)</th>
+                            <th scope="col">Min Temperature (°C)</th>
+                            <th scope="col">Humidity (%)</th>
+                            <th scope="col">Wind (km/h)</th>
+                            <th scope="col">Pressure (atm)</th>
+                            <th scope="col" colspan="2">Weather</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" id="day1Date">Current day + 1</td>
+                            <td id="day1MaxTemp">#</td>
+                            <td id="day1MinTemp">#</td>
+                            <td id="day1Humidity">#</td>
+                            <td id="day1Wind">#</td>
+                            <td id="day1Pressure">#</td>
+                            <td id="day1Weather">#</td>
+                            <td id="day1Icon">#</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="day2Date">Current day + 2</td>
+                            <td id="day2MaxTemp">#</td>
+                            <td id="day2MinTemp">#</td>
+                            <td id="day2Humidity">#</td>
+                            <td id="day2Wind">#</td>
+                            <td id="day2Pressure">#</td>
+                            <td id="day2Weather">#</td>
+                            <td id="day2Icon">#</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="day3Date">Current day + 3</td>
+                            <td id="day3MaxTemp">#</td>
+                            <td id="day3MinTemp">#</td>
+                            <td id="day3Humidity">#</td>
+                            <td id="day3Wind">#</td>
+                            <td id="day3Pressure">#</td>
+                            <td id="day3Weather">#</td>
+                            <td id="day3Icon">#</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="day4Date">Current day + 4</td>
+                            <td id="day4MaxTemp">#</td>
+                            <td id="day4MinTemp">#</td>
+                            <td id="day4Humidity">#</td>
+                            <td id="day4Wind">#</td>
+                            <td id="day4Pressure">#</td>
+                            <td id="day4Weather">#</td>
+                            <td id="day4Icon">#</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="day5Date">Current day + 5</td>
+                            <td id="day5MaxTemp">#</td>
+                            <td id="day5MinTemp">#</td>
+                            <td id="day5Humidity">#</td>
+                            <td id="day5Wind">#</td>
+                            <td id="day5Pressure">#</td>
+                            <td id="day5Weather">#</td>
+                            <td id="day5Icon">#</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <footer>
+            <div class="App-Logo">
+                <i class="navbar-brand fas fa-umbrella"></i>
+                <p id="App_Name"><b>Weather<span> Forecast </span>App</b></p>
+            </div>
+            <div class="DesignerInfo">
+                <p><b>Designed and Developed By <span id="Name">Sagar Dutta</span></b></p>
+            </div>
+            <div class="SocialMedia">
+                <a href="https://github.com/SagarDuttaSays" target="_blank" title="Github-Profile"><i
+                        class="fa-brands fa-github"></i>
+                    <a href="https://www.instagram.com/theeliopsalms?igshid=ZDdkNTZiNTM=" target="_blank" title="Instagrap-Profile"><i
+                            class="fa-brands fa-instagram"></i>
+                        <a href="https://www.linkedin.com/in/duttasagar" target="_blank"
+                            title="Linkdin-Profile"><i class="fa-brands fa-linkedin-in"></i>
+
+            </div>
+        </footer>
+        
+    </body>
+</html>
